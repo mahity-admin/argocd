@@ -20,8 +20,8 @@ spec:
           ports:
             - containerPort: 80
           securityContext:
-            allowPrivilegeEscalation: false
             runAsNonRoot: true
+            allowPrivilegeEscalation: false
             capabilities:
               drop:
                 - ALL
