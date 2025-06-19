@@ -19,4 +19,18 @@ spec:
           image: bastion.karan.mahity.local:8443/nginx/nginx:latest
           ports:
             - containerPort: 80
-
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: nginx-cache
+              mountPath: /var/cache/nginx
+      volumes:
+        - name: nginx-cache
+          emptyDir: {}
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
