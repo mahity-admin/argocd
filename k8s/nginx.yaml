@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:latest
+          image: bastion.karan.mahity.local:8443/nginx/nginx:latest
           ports:
             - containerPort: 80
 
