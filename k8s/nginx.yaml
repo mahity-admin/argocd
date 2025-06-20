@@ -14,26 +14,8 @@ spec:
       labels:
         app: nginx
     spec:
-      securityContext:
-        runAsUser: 1000            # Run as non-root user ID (adjust if needed)
-        runAsGroup: 1000           # Run as group 1000
-        fsGroup: 1000              # Give group ownership on volumes like /var/cache/nginx
-        seccompProfile:
-          type: RuntimeDefault
       containers:
         - name: nginx
           image: bastion.karan.mahity.local:8443/nginx/nginx:latest
           ports:
             - containerPort: 8080
-          securityContext:
-            runAsNonRoot: true
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
-          volumeMounts:
-            - name: nginx-cache
-              mountPath: /var/cache/nginx
-      volumes:
-        - name: nginx-cache
-          emptyDir: {}
