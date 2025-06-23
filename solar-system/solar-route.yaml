@@ -1,0 +1,12 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: solar-route
+  namespace: nginx
+spec:
+  host: solar.karan.mahity.local
+  to:
+    kind: Service
+    name: solar-service
+  port:
+    targetPort: 80
