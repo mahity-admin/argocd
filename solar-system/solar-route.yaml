@@ -1,11 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: solar-ingress
-  namespace: nginx
+  name: nginx
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+  - hosts:
+    - solar.mahiy.local
+    secretName: myapp-tls
   rules:
   - host: solar.mahity.local
     http:
