@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: bastion.karan.mahity.local:8443/library/solar-system:latest
+          image: docker.io/heatkuntal/solar-system:latest
           ports:
             - containerPort: 80
