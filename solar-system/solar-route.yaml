@@ -1,16 +1,16 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx
+  name: solar-ingress
+  namespace: nginx  # or your app's namespace
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # disable HTTPS redirect
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m" # allow larger uploads if needed
 spec:
-  tls:
-  - hosts:
-    - solar.mahiy.local
-    secretName: myapp-tls
+  ingressClassName: nginx  # ensure this matches your ingress class
   rules:
-  - host: solar.mahity.local
+  - host: solar.mahity.local  # your custom hostname
     http:
       paths:
       - path: /
@@ -20,3 +20,4 @@ spec:
             name: solar-service
             port:
               number: 80
+ 
